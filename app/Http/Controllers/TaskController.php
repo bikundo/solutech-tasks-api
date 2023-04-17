@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
+use App\Http\Resources\TaskCollection;
+use App\Http\Resources\TaskResource;
 use App\Models\Task;
 
 class TaskController extends Controller
@@ -13,7 +15,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        //
+        return new TaskCollection(Task::paginate(10));
     }
 
     /**
@@ -29,7 +31,13 @@ class TaskController extends Controller
      */
     public function store(StoreTaskRequest $request)
     {
-        //
+        $task = Task::create($request->all());
+
+        return response()->json([
+            'status'  => true,
+            'message' => "Task Created successfully!",
+            'post'    => $task,
+        ], 201);
     }
 
     /**
@@ -37,7 +45,7 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
-        //
+        return new TaskResource($task);
     }
 
     /**
@@ -53,7 +61,13 @@ class TaskController extends Controller
      */
     public function update(UpdateTaskRequest $request, Task $task)
     {
-        //
+        $task = $task->update($request->validated());
+
+        return response()->json([
+            'status'  => true,
+            'message' => "Task updated successfully!",
+            'post'    => $task,
+        ]);
     }
 
     /**
@@ -61,6 +75,11 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        //
+        $task->delete();
+
+        return response()->json([
+            'status'  => true,
+            'message' => "Task Deleted successfully!",
+        ], 204);
     }
 }

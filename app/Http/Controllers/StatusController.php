@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreStatusRequest;
 use App\Http\Requests\UpdateStatusRequest;
+use App\Http\Resources\StatusResource;
 use App\Models\Status;
 
 class StatusController extends Controller
@@ -13,7 +14,7 @@ class StatusController extends Controller
      */
     public function index()
     {
-        //
+        return new StatusResource(Status::all());
     }
 
     /**
@@ -37,7 +38,7 @@ class StatusController extends Controller
      */
     public function show(Status $status)
     {
-        //
+        return new StatusResource($status);
     }
 
     /**
