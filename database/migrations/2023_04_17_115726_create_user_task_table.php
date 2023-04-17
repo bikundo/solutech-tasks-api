@@ -13,13 +13,13 @@ return new class extends Migration {
     {
         Schema::create('user_task', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('task_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('user_id');
+            $table->foreignId('task_id');
             $table->timestamp('due_date');
             $table->timestamp('start_time')->useCurrent();
-            $table->timestamp('end_time');
+            $table->timestamp('end_time')->nullable();
             $table->string('remarks', 100);
-            $table->foreignId('status_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('status_id');
             $table->timestamps();
             $table->softDeletes();
         });
