@@ -10,8 +10,13 @@ class Task extends Model
 {
     use HasFactory, SoftDeletes;
 
-    public function users()
+    public function taskuser()
     {
-        return $this->belongsToMany(User::class);
+        return $this->hasOne(UserTask::class);
+    }
+
+    public function status()
+    {
+        return $this->belongsTo(Status::class);
     }
 }

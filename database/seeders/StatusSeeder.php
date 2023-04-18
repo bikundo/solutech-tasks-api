@@ -15,7 +15,6 @@ class StatusSeeder extends Seeder
     : void
     {
         $statuses = [
-            'unassigned',
             'backlog',
             'in_progress',
             'in_review',

@@ -23,7 +23,7 @@ class UserTaskFactory extends Factory
             'task_id'   => rand(1, 30),
             'due_date'  => now()->addDays(rand(1, 10)),
             'remarks'   => fake()->sentence(),
-            'status_id' => rand(1, 5),
+            'status_id' => rand(1, 4),
         ];
     }
 }
