@@ -18,8 +18,8 @@ return new class extends Migration {
             $table->timestamp('due_date');
             $table->timestamp('start_time')->useCurrent();
             $table->timestamp('end_time')->nullable();
-            $table->string('remarks', 100);
-            $table->foreignId('status_id');
+            $table->string('remarks', 100)->nullable();
+            $table->foreignId('status_id')->default(1);
             $table->timestamps();
             $table->softDeletes();
         });

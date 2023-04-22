@@ -12,6 +12,8 @@ class UserTask extends Model
 
     protected $table = 'task_user';
 
+    protected $guarded = [];
+
     public function user()
     {
         return $this->belongsTo(User::class);

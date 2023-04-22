@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name', 100);
             $table->string('description');
             $table->timestamp('due_date');
-            $table->foreignId('status_id');
+            $table->foreignId('status_id')->default(1);
             $table->timestamps();
             $table->softDeletes();
         });
