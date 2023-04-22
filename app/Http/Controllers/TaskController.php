@@ -15,7 +15,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        return new TaskCollection(Task::with('taskuser', 'taskuser.user')->paginate(20));
+        return new TaskCollection(Task::with('taskuser', 'taskuser.user')->paginate(100));
     }
 
     /**
