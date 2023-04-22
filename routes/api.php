@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\StatusController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\TaskUserController;
@@ -22,9 +23,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::resource('tasks', TaskController::class);
-Route::resource('statuses', StatusController::class);
-Route::resource('users', UserController::class);
-Route::resource('user-tasks', TaskUserController::class);
+Route::resource('tasks', TaskController::class)->middleware('auth:sanctum');
+Route::resource('statuses', StatusController::class)->middleware('auth:sanctum');
+Route::resource('users', UserController::class)->middleware('auth:sanctum');
+Route::resource('user-tasks', TaskUserController::class)->middleware('auth:sanctum');
+
+Route::any('/login', [AuthController::class, 'login']);
+
+
 
 
